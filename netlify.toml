@@ -1,6 +1,6 @@
 [build]
   publish = "build/web"
-  command = "flutter build web --release"
+  command = "bash scripts/netlify_build.sh"
 
 # SPA routing: send all paths to index.html
 [[redirects]]
