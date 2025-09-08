@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Install Flutter stable
+# Install Flutter stable (bundles Dart)
 FLUTTER_CHANNEL="stable"
-FLUTTER_VERSION="3.24.0"
+FLUTTER_VERSION="3.35.3"  # includes Dart >= 3.9.x per Netlify guidance
 
 echo "Installing Flutter ${FLUTTER_VERSION}-${FLUTTER_CHANNEL}..."
 mkdir -p "$HOME/flutter"
@@ -13,6 +13,9 @@ mkdir -p flutter-sdk
 tar xf flutter.tar.xz -C flutter-sdk --strip-components=1
 export PATH="$HOME/flutter-sdk/bin:$PATH"
 flutter --version
+
+# Disable analytics/prompt noise in CI
+flutter config --no-analytics || true
 popd >/dev/null
 
 # Enable web support
