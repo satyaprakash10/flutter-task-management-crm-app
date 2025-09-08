@@ -1,0 +1,20 @@
+[build]
+  publish = "build/web"
+  command = "flutter build web --release"
+
+# SPA routing: send all paths to index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Optional: cache built assets aggressively
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/flutter.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable" 
